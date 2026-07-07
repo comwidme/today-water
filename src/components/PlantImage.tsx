@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { PLACEHOLDER_IMAGE_URL } from '../data/plantPresets'
+import { resolvePublicAssetPath } from '../utils/publicAsset'
 
 type PlantImageProps = {
   src: string
@@ -9,13 +10,18 @@ type PlantImageProps = {
 
 const normalizeImageUrl = (url: string): string => url.replace(/\.svg$/i, '.jpg')
 
+const resolveImageSrc = (url: string): string =>
+  resolvePublicAssetPath(normalizeImageUrl(url))
+
 export const PlantImage = ({ src, alt, className = '' }: PlantImageProps) => {
-  const [currentSrc, setCurrentSrc] = useState(() => normalizeImageUrl(src))
+  const [currentSrc, setCurrentSrc] = useState(() => resolveImageSrc(src))
   const [failed, setFailed] = useState(false)
 
   const handleError = () => {
-    if (currentSrc !== PLACEHOLDER_IMAGE_URL) {
-      setCurrentSrc(PLACEHOLDER_IMAGE_URL)
+    const placeholderSrc = resolveImageSrc(PLACEHOLDER_IMAGE_URL)
+
+    if (currentSrc !== placeholderSrc) {
+      setCurrentSrc(placeholderSrc)
       return
     }
 
