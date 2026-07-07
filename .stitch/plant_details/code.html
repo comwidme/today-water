@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c8c3;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-container": "#89181c",
+                        "on-background": "#191c1d",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-secondary-container": "#00750d",
+                        "today-green": "#4BB543",
+                        "outline-variant": "#c1c8c3",
+                        "primary-container": "#2b4c3f",
+                        "primary": "#143529",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#c6ebd9",
+                        "tertiary-fixed": "#ffdad7",
+                        "tertiary": "#67000a",
+                        "primary-fixed-dim": "#aacfbd",
+                        "surface-bright": "#f8f9fa",
+                        "deep-sage": "#2B4C3F",
+                        "upcoming-gray": "#6C757D",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#aacfbd",
+                        "on-primary-fixed-variant": "#2c4d40",
+                        "surface-tint": "#446557",
+                        "on-tertiary-fixed": "#410004",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#8efb7f",
+                        "on-primary-fixed": "#002116",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-container": "#ff9790",
+                        "secondary-fixed": "#8efb7f",
+                        "outline": "#717974",
+                        "on-surface-variant": "#414844",
+                        "secondary": "#006e0c",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-highest": "#e1e3e4",
+                        "overdue-red": "#D9534F",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "background": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary-fixed": "#002201",
+                        "on-secondary-fixed-variant": "#005307",
+                        "on-primary-container": "#98bbab",
+                        "secondary-fixed-dim": "#73de66",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed-variant": "#8b191d",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary": "#ffffff",
+                        "soft-white": "#F8F9FA"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "edge-margin": "1.25rem",
+                        "gutter": "1rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "stack-sm": "0.5rem",
+                        "container-max-width": "448px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "30px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low flex justify-center min-h-screen items-start antialiased">
+<!-- Mobile Device Container -->
+<main class="w-full max-w-[448px] bg-soft-white min-h-screen relative shadow-2xl overflow-hidden flex flex-col">
+<!-- Top Navigation Header -->
+<header class="flex justify-between items-center px-edge-margin h-16 w-full sticky top-0 z-50 bg-soft-white/80 backdrop-blur-md">
+<button class="flex items-center gap-1 text-deep-sage hover:opacity-80 transition-opacity active:scale-95 duration-150" onclick="history.back()">
+<span class="material-symbols-outlined">chevron_left</span>
+<span class="font-label-lg text-label-lg">뒤로가기</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-deep-sage">거실 몬스테라</h1>
+<div class="w-10"></div> <!-- Placeholder for symmetry -->
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-32 custom-scrollbar">
+<!-- Main Banner Image -->
+<div class="relative w-full h-[320px] px-edge-margin mt-stack-sm">
+<div class="w-full h-full rounded-[2rem] overflow-hidden shadow-sm relative group">
+<img class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="A high-resolution, professional photograph of a lush Monstera Deliciosa plant sitting in a bright, minimalist living room. The plant features vibrant, deep green leaves with iconic natural splits, glowing under soft, diffused natural light from a nearby window. The background is a clean, soft-white wall, creating a serene and nurturing botanical minimalism atmosphere. The composition is modern and artistic, emphasizing the organic texture of the foliage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO2DgKxmbxKc4iLhdMH_zkxI_oUkxrNLmWmvwLGTVByLlBD0OzAYEB7tqTUaAasYhCaRHL8TqbV7msE8573oIXfgG7Nmx5xde5PeT3LRg06CaWp-rQboJXUqLe72jkqyngCfBiTEXFnp-UcYiyt4MakK1b6lUWZpyLUmFhTQc5EqJNfrdFpYMUjj3M4jj2qTp-N_JcUnntfNAlFr5g-TvaUoDcSvOpsgRBnjhtf4dbGwiGdeD2AVmBhJEvkujzpe78UXK6KQP3ebA"/>
+<!-- Leaf Vector Overlay (represented by a subtle gradient) -->
+<div class="absolute inset-0 bg-gradient-to-t from-deep-sage/20 to-transparent pointer-events-none"></div>
+</div>
+</div>
+<!-- Quick Info & Status -->
+<section class="px-edge-margin mt-stack-lg">
+<div class="bg-white p-5 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="bg-today-green/10 text-today-green font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined !text-[14px]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                            오늘 물주기
+                        </span>
+<p class="text-on-surface-variant font-label-sm text-label-sm">건강함 • 120일째</p>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-deep-sage">다음 물주기 예정일</h2>
+<p class="font-body-lg text-body-lg text-on-surface">2026-07-07 (D-Day)</p>
+</div>
+</div>
+</section>
+<!-- Care Guide Meta Info Grid -->
+<section class="px-edge-margin mt-stack-lg">
+<div class="grid grid-cols-2 gap-3">
+<!-- Grid Item 1 -->
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-deep-sage">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">난이도</p>
+<p class="font-label-lg text-label-lg text-deep-sage">쉬움</p>
+</div>
+</div>
+<!-- Grid Item 2 -->
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-deep-sage">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">주기</p>
+<p class="font-label-lg text-label-lg text-deep-sage">7일</p>
+</div>
+</div>
+<!-- Grid Item 3 -->
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-deep-sage">
+<span class="material-symbols-outlined">opacity</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">양</p>
+<p class="font-label-lg text-label-lg text-deep-sage">보통</p>
+</div>
+</div>
+<!-- Grid Item 4 -->
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-deep-sage">
+<span class="material-symbols-outlined">potted_plant</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">방식</p>
+<p class="font-label-lg text-label-lg text-deep-sage">흙에 직접</p>
+</div>
+</div>
+<!-- Grid Item 5 (Full Width) -->
+<div class="col-span-2 bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-deep-sage">
+<span class="material-symbols-outlined">light_mode</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">빛</p>
+<p class="font-label-lg text-label-lg text-deep-sage">밝은 간접광 (창가 근처)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Info Sections -->
+<section class="px-edge-margin mt-stack-lg space-y-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-deep-sage mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined">menu_book</span>
+                        관리 팁
+                    </h3>
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] border-l-4 border-deep-sage">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            겉흙이 마르면 물을 주고, 통풍이 잘 되는 곳에 두세요. 잎에 쌓인 먼지를 젖은 수건으로 가끔 닦아주면 광합성에 도움이 됩니다.
+                        </p>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-deep-sage mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-error">report</span>
+                        주의사항
+                    </h3>
+<div class="bg-error-container/20 p-4 rounded-2xl border-l-4 border-error">
+<p class="font-body-md text-body-md text-on-error-container leading-relaxed font-semibold">
+                            ! 과습에 각별히 주의하세요. 잎 끝이 노랗게 변한다면 물주기 주기를 조금 더 늦춰야 할 신호일 수 있습니다.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Watering Log Timeline -->
+<section class="px-edge-margin mt-stack-lg pb-10">
+<h3 class="font-headline-md text-headline-md text-deep-sage mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined">history</span>
+                    관리 기록
+                </h3>
+<div class="bg-white p-5 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] relative overflow-hidden">
+<div class="absolute left-[27px] top-8 bottom-8 w-[2px] bg-outline-variant/30"></div>
+<div class="space-y-6">
+<!-- Timeline Item 1 -->
+<div class="flex items-start gap-4 relative">
+<div class="z-10 w-4 h-4 rounded-full bg-today-green shadow-[0_0_0_4px_rgba(75,181,67,0.1)] mt-1"></div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">오늘 조치 완료</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2026-07-07 10:00</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex items-start gap-4 relative">
+<div class="z-10 w-4 h-4 rounded-full bg-outline-variant mt-1"></div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">주기 등록 기록</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2026-07-01 09:30</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Bottom Dual Action Bar -->
+<footer class="fixed bottom-0 w-full max-w-[448px] bg-white/90 backdrop-blur-xl px-edge-margin py-6 flex gap-3 z-50 border-t border-outline-variant/20 shadow-[0_-4px_20px_-4px_rgba(43,76,63,0.08)]">
+<button class="flex-[7] bg-deep-sage text-white font-label-lg text-label-lg h-14 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all duration-200" id="completeBtn">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                물주기 완료
+            </button>
+<button class="flex-[3] bg-error-container/20 text-error font-label-lg text-label-lg h-14 rounded-2xl flex items-center justify-center gap-2 hover:bg-error/10 active:scale-95 transition-all duration-200" id="deleteBtn">
+<span class="material-symbols-outlined">delete</span>
+                삭제
+            </button>
+</footer>
+<!-- Custom Confirmation Dialog (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-primary/40 backdrop-blur-sm hidden px-edge-margin" id="deleteModal">
+<div class="bg-white p-6 rounded-[2rem] w-full max-w-[320px] shadow-2xl scale-95 transition-transform duration-300" id="modalContent">
+<h4 class="font-headline-md text-headline-md text-deep-sage text-center mb-2">식물을 삭제할까요?</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mb-6">지금까지의 모든 관리 기록이 사라지며 복구할 수 없습니다.</p>
+<div class="flex flex-col gap-2">
+<button class="w-full bg-error text-white font-label-lg text-label-lg h-12 rounded-xl active:scale-95 transition-transform" id="confirmDelete">삭제하기</button>
+<button class="w-full bg-surface-container text-on-surface-variant font-label-lg text-label-lg h-12 rounded-xl active:scale-95 transition-transform" id="cancelDelete">취소</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-28 left-1/2 -translate-x-1/2 z-[110] bg-deep-sage/95 backdrop-blur-md text-white px-6 py-3 rounded-full flex items-center gap-3 shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300" id="toast">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="font-label-lg text-label-lg">물주기 기록이 저장되었습니다.</span>
+</div>
+</main>
+<script>
+        // Modal Logic
+        const deleteBtn = document.getElementById('deleteBtn');
+        const deleteModal = document.getElementById('deleteModal');
+        const modalContent = document.getElementById('modalContent');
+        const cancelDelete = document.getElementById('cancelDelete');
+        const confirmDelete = document.getElementById('confirmDelete');
+
+        deleteBtn.addEventListener('click', () => {
+            deleteModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        });
+
+        const closeModal = () => {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                deleteModal.classList.add('hidden');
+            }, 200);
+        };
+
+        cancelDelete.addEventListener('click', closeModal);
+
+        confirmDelete.addEventListener('click', () => {
+            // Simulate deletion and redirect
+            confirmDelete.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span>';
+            setTimeout(() => {
+                alert('식물 정보가 삭제되었습니다.');
+                window.location.href = '/'; // Go back to Home (Screen 1)
+            }, 1000);
+        });
+
+        // Toast Logic
+        const completeBtn = document.getElementById('completeBtn');
+        const toast = document.getElementById('toast');
+
+        completeBtn.addEventListener('click', () => {
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            completeBtn.classList.add('bg-today-green');
+            completeBtn.innerHTML = '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 1;">check_circle</span> 완료됨';
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        });
+
+        // Close modal on click outside
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) closeModal();
+        });
+    </script>
+</body></html>

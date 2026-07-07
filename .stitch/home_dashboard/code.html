@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>오늘물줘 - 홈 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f0f1f2",
+                    "tertiary-container": "#89181c",
+                    "on-background": "#191c1d",
+                    "on-error": "#ffffff",
+                    "on-surface": "#191c1d",
+                    "on-secondary-container": "#00750d",
+                    "today-green": "#4BB543",
+                    "outline-variant": "#c1c8c3",
+                    "primary-container": "#2b4c3f",
+                    "primary": "#143529",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#c6ebd9",
+                    "tertiary-fixed": "#ffdad7",
+                    "tertiary": "#67000a",
+                    "primary-fixed-dim": "#aacfbd",
+                    "surface-bright": "#f8f9fa",
+                    "deep-sage": "#2B4C3F",
+                    "upcoming-gray": "#6C757D",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#aacfbd",
+                    "on-primary-fixed-variant": "#2c4d40",
+                    "surface-tint": "#446557",
+                    "on-tertiary-fixed": "#410004",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#8efb7f",
+                    "on-primary-fixed": "#002116",
+                    "surface-container-high": "#e7e8e9",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-container": "#ff9790",
+                    "secondary-fixed": "#8efb7f",
+                    "outline": "#717974",
+                    "on-surface-variant": "#414844",
+                    "secondary": "#006e0c",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container-highest": "#e1e3e4",
+                    "overdue-red": "#D9534F",
+                    "tertiary-fixed-dim": "#ffb3ae",
+                    "background": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d9dadb",
+                    "on-secondary-fixed": "#002201",
+                    "on-secondary-fixed-variant": "#005307",
+                    "on-primary-container": "#98bbab",
+                    "secondary-fixed-dim": "#73de66",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "on-tertiary-fixed-variant": "#8b191d",
+                    "inverse-surface": "#2e3132",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary": "#ffffff",
+                    "soft-white": "#F8F9FA"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "edge-margin": "1.25rem",
+                    "gutter": "1rem",
+                    "stack-lg": "1.5rem",
+                    "stack-md": "1rem",
+                    "stack-sm": "0.5rem",
+                    "container-max-width": "448px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["22px", {"lineHeight": "30px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #f0f2f0; /* Subtle context for centered device view */
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .active-nav-bg {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex justify-center items-start min-h-screen">
+<!-- Mobile Device Container -->
+<div class="relative w-full max-w-[448px] bg-soft-white min-h-screen flex flex-col shadow-2xl overflow-hidden pb-32">
+<!-- TopAppBar Component -->
+<header class="flex justify-between items-center px-edge-margin h-16 w-full sticky top-0 z-50 bg-soft-white dark:bg-background">
+<div class="flex items-center gap-2">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-deep-sage dark:text-primary-fixed">오늘물줘</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-on-surface-variant font-label-sm text-label-sm">2026-07-07</span>
+</div>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 px-edge-margin overflow-y-auto custom-scrollbar">
+<!-- Summary Dashboard Counter Component -->
+<section class="mt-stack-md grid grid-cols-2 gap-4">
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] border border-transparent">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">오늘 물 줄 식물</p>
+<p class="text-headline-lg font-headline-lg text-today-green">1</p>
+</div>
+<div class="bg-white p-4 rounded-2xl shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] border border-transparent">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-1">물주기 지연</p>
+<p class="text-headline-lg font-headline-lg text-upcoming-gray">0</p>
+</div>
+</section>
+<!-- Plant List Section -->
+<section class="mt-stack-lg space-y-gutter">
+<h2 class="text-label-lg font-label-lg text-deep-sage">나의 식물 리스트</h2>
+<!-- Card 1: 예정 -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] border border-transparent hover:border-deep-sage/10 transition-all duration-300 active:scale-[0.98]" onclick="window.location.href='#'">
+<div class="h-48 w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-quality, minimalist interior photography of a lush green Monstera Deliciosa plant in a clean white ceramic pot. The setting is a bright, soft-lit living room with neutral tones, warm sunlight streaming through a window, and a serene botanical atmosphere. The overall style is clean, nurturing, and modern, utilizing a soft-white and deep-sage color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9d1fr6mz0IZ_bcyXCu2nytx2TktQN3nh0gEEBp-u2Gh_RJsozdjFt0NWuxEUCzd1vShvtkosF9aUVV0qPdrxOYwmrxzKtyLdD5101YomHp3W0nxI7zEZLA7GCgf2UBDJOfoORzQhf3NFfkoLZFC1xDOeWKCw2EuSt2u5l8ZU9Ab-JvudPuYCIsUedixXRAmpWkdGvoscoQNidjApY4wUEUXY64fT0QVwudipnTAJtyQPL0ATFHxSIhsMm-fKBrHF1NXDe5Sh8m5Q"/>
+<div class="absolute top-3 right-3">
+<span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-label-sm font-label-sm text-upcoming-gray shadow-sm border border-outline-variant/30">
+                                예정
+                            </span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-headline-md font-headline-md text-deep-sage">거실 몬스테라</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">몬스테라</p>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-upcoming-gray">다음: 2026-07-08</span>
+<button class="px-4 py-2 bg-deep-sage text-white rounded-2xl font-label-lg text-label-lg active:scale-95 transition-transform hover:opacity-90" onclick="event.stopPropagation(); showToast();">
+                                물주기 완료
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 2: 오늘 물주기 -->
+<div class="group bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(43,76,63,0.04)] border-2 border-today-green/20 transition-all duration-300 active:scale-[0.98]" onclick="window.location.href='#'">
+<div class="h-48 w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a Sansevieria Stuckyi plant with its distinct cylindrical vertical leaves, placed in a minimalist terracotta pot. The background is a clean, soft-white wall with gentle shadows. The lighting is bright and airy, emphasizing the organic texture of the plant. The color scheme features deep greens and warm earthy tones, reflecting a peaceful digital sanctuary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAillsl4VS4tR0FspQd9G0scEM0vEZ7ejCQi7TPe3Mc1c3obW6IxwFBJ4JLE4GEbKlMiAFzedVZRjQ91nZgWi-Q9Ot_zbpIJKIZTF-2pM5gWFEF3bkRGbE5Awu1-lktXmC6alDMCf51UnNApLc8gmH4uYXHLPnsfGgeH2arw4p7C-WpB3KyNFrl_95hoBNCfFDlPYf7btAGQWwFaa86696ygDVTj6AIs6UbsuKrVHCJ5QBLdpJ2_lD260J2beOIZb16IakmaS7Iguc"/>
+<div class="absolute top-3 right-3">
+<span class="px-3 py-1 bg-today-green/10 backdrop-blur-md rounded-full text-label-sm font-label-sm text-today-green shadow-sm border border-today-green/20">
+                                오늘 물주기
+                            </span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-headline-md font-headline-md text-deep-sage">방구석 스투키</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">스투키</p>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-today-green font-semibold">다음: 2026-07-07</span>
+<button class="px-4 py-2 bg-secondary text-white rounded-2xl font-label-lg text-label-lg active:scale-95 transition-transform hover:opacity-90 shadow-md shadow-secondary/20" onclick="event.stopPropagation(); showToast();">
+                                물주기 완료
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-5 w-14 h-14 bg-deep-sage text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform z-50" onclick="window.location.href='#'">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Global Toast Area -->
+<div class="fixed bottom-28 left-1/2 -translate-x-1/2 w-full max-w-[400px] px-4 pointer-events-none z-[60] transition-all duration-500 opacity-0 translate-y-10" id="toast-container">
+<div class="bg-deep-sage/90 backdrop-blur-xl text-white px-5 py-3 rounded-2xl flex items-center justify-between shadow-xl border border-white/10 pointer-events-auto">
+<span class="text-label-lg font-label-lg">물주기 완료 기록이 추가되었습니다.</span>
+<button class="text-secondary-fixed font-label-lg text-label-lg px-2 active:opacity-60 transition-opacity">실행 취소</button>
+</div>
+</div>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 w-full max-w-[448px] left-1/2 -translate-x-1/2 rounded-t-xl z-50 backdrop-blur-xl border-t border-outline-variant dark:border-primary-container bg-white/90 dark:bg-primary/90 shadow-[0_-4px_20px_-4px_rgba(43,76,63,0.04)] flex justify-around items-center px-4 pb-6 pt-3">
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container rounded-full px-4 py-1 transition-all duration-300 ease-in-out cursor-pointer group">
+<span class="material-symbols-outlined text-deep-sage dark:text-primary-fixed" data-weight="fill">potted_plant</span>
+<span class="font-label-sm text-label-sm text-deep-sage dark:text-primary-fixed">My Plants</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-deep-sage dark:hover:text-primary-fixed transition-all duration-300 ease-in-out cursor-pointer group">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-sm text-label-sm">Schedule</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-deep-sage dark:hover:text-primary-fixed transition-all duration-300 ease-in-out cursor-pointer group">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm">Journal</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-deep-sage dark:hover:text-primary-fixed transition-all duration-300 ease-in-out cursor-pointer group">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+</div>
+<script>
+        function showToast() {
+            const toast = document.getElementById('toast-container');
+            toast.classList.remove('opacity-0', 'translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+
+        // Ripple Effect for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+<style>
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            border-radius: 50%;
+            animation: ripple-animation 0.6s linear;
+        }
+        @keyframes ripple-animation {
+            from {
+                width: 0px;
+                height: 0px;
+                opacity: 0.5;
+            }
+            to {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+    </style>
+</body></html>
