@@ -1,0 +1,103 @@
+---
+description: 오늘물줘 MVP — Cursor Agent 행동 규칙 및 구현 판단 기준
+alwaysApply: true
+---
+
+# 오늘물줘 (today-water) Agent Rules
+
+## 문서 우선순위
+
+1. **구현 기준**: 프로젝트 루트 `docs/` 폴더
+   - `docs/PRD.md` — 기능 범위, 데이터 모델, 핵심 로직, 저장 규칙
+   - `docs/scr_design.md` — 화면 구성, UI 요소, 레이아웃, 인터랙션
+   - `docs/navigation_design.md` — 라우트, 사용자 흐름, 예외 처리
+2. **참고만**: `.stitch/docs` 및 `.stitch/` 산출물(HTML, DESIGN 등)
+   - 이전 디자인·프로토타입으로 간주한다. **구현 기준으로 삼지 않는다.**
+   - `docs/`와 충돌하면 **항상 `docs/`를 따른다.**
+
+문서에 없는 기능은 임의로 추가하지 않는다. 확장 아이디어는 TODO 주석만 남긴다.
+
+## 제품 범위
+
+**Must (최우선)**
+- 식물 등록 + 기본 물주기 계획 생성 (인기 Top5 프리셋)
+- 홈에서 물주기 상태 확인
+- 물주기 완료 및 기록 저장
+
+**Should (Must 이후)**
+- 식물 상세 확인, 식물 삭제
+
+**금지 (MVP 제외)**
+- 로그인/회원가입, 서버·DB·백엔드 API
+- 외부 API(AI, 날씨, Gemini 등), 푸시 알림
+- 커뮤니티, 커머스, 식물 검색/도감, IoT, 이미지 분석·업로드·편집
+- 계정 간 데이터 동기화
+
+**원칙**: 작동하는 MVP를 먼저 만든다. Must → Should 순으로 구현한다.
+
+## 기술 스택·배포
+
+- Vite + React + TypeScript(strict) + Tailwind CSS v4
+- 상태 저장: **LocalStorage만** (`STORAGE_KEY = 'today-water-plants'`)
+- 배포: GitHub Pages 가능한 **정적 SPA**
+- 외부 API·서버 의존 코드를 추가하지 않는다.
+
+## 라우트 (변경 금지)
+
+| 경로 | 화면 |
+|------|------|
+| `/` | 홈 |
+| `/add` | 식물 등록 |
+| `/plants/:plantId` | 식물 상세 |
+
+- 뎁스는 최대 2단계. 존재하지 않는 라우트·삭제된 plantId → 홈 리다이렉트 + 안내.
+- 라우팅·흐름 상세는 `docs/navigation_design.md`를 따른다.
+
+## 데이터·저장 규칙
+
+- **PlantPreset**: `src/data/plantPresets.ts` — 읽기 전용 Top5 (monstera, stuckyi, scindapsus, sansevieria, dracaena)
+- **UserPlant / WateringLog / AppStorage**: `docs/PRD.md` 타입 정의 준수
+- LocalStorage: `version: 1`, 파싱 실패·버전 불일치 시 `DEFAULT_STORAGE`로 복구
+- **저장하지 않음**: `WateringStatus`, `todayLabel`, `isOverdue`, `isToday`, `daysUntilWatering` — 렌더 시 계산
+
+## 날짜·핵심 로직
+
+- 날짜 필드(`lastWateredAt`, `nextWateringAt`, `wateredAt`): `YYYY-MM-DD` (두 자리 월/일)
+- 시각 필드(`createdAt`, `updatedAt`): ISO string
+- 오늘: 브라우저 **로컬 날짜** 기준
+- `nextWateringAt = lastWateredAt + wateringCycle(일)`
+- `getWateringStatus`: `overdue` (< 오늘) | `today` (= 오늘) | `upcoming` (> 오늘)
+- 물주기 완료: `lastWateredAt`→오늘, 로그 추가, `nextWateringAt` 재계산, `updatedAt` 갱신
+- ID: `createId('plant' | 'log')` 패턴 (`crypto.randomUUID` 우선)
+
+로직은 `src/utils/`(date, id, storage)에 두고 순수 함수로 유지한다.
+
+## UI·UX 판단 기준
+
+- **모바일 우선**: `max-w-md mx-auto`, Clean & Minimal 식물 케어 테마
+- UI 상세·컴포넌트 동작은 `docs/scr_design.md`를 따른다
+- 정적 이미지: `/images/plants/{plantTypeId}.jpg`, 실패 시 `/images/plants/placeholder.jpg`
+- `alt`: 식물 별명 또는 식물명
+- StatusBadge: overdue(레드) / today(그린) / upcoming(그레이)
+- 물주기 완료: in-place 업데이트 + GlobalToast(실행 취소 롤백)
+- 등록 화면 이탈: NavigationGuard(폼 변경 시 확인)
+- 삭제: 확인 UI 후 LocalStorage 제거 → 홈 이동
+
+## 코드 구조·스타일
+
+권장 구조 (`docs/PRD.md` §19):
+`src/types/`, `src/data/`, `src/utils/`, `src/components/`, `src/pages/`, `src/styles/`
+
+- 함수형 컴포넌트·순수 함수 우선. 로직은 커스텀 훅·유틸로 분리
+- Tailwind로 스타일링. 불필요한 CSS 파일·인라인 스타일 남발 금지
+- 변경 범위는 요청·Must/Should 범위에 맞게 최소화
+- 구현 시 테스트를 함께 작성한다 (날짜 계산, storage 복구, 상태 판별 등 핵심 로직 우선)
+
+## 완료 판단
+
+기능 추가·수정 후 아래를 확인한다.
+
+- `npm run dev` / `npm run build` 통과
+- LocalStorage 영속성(새로고침 후 유지)
+- Must 3종 + Should(상세·삭제) 동작
+- PRD §17 완료 기준 충족 여부

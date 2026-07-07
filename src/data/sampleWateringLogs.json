@@ -1,0 +1,38 @@
+[
+    {
+      "id": "log_sample_001",
+      "plantId": "plant_sample_monstera_001",
+      "plantNickname": "거실 몬스테라",
+      "wateredAt": "2026-07-01",
+      "createdAt": "2026-07-01T09:00:00.000Z"
+    },
+    {
+      "id": "log_sample_002",
+      "plantId": "plant_sample_stuckyi_001",
+      "plantNickname": "책상 스투키",
+      "wateredAt": "2026-06-24",
+      "createdAt": "2026-06-24T10:30:00.000Z"
+    },
+    {
+      "id": "log_sample_003",
+      "plantId": "plant_sample_scindapsus_001",
+      "plantNickname": "주방 스킨답서스",
+      "wateredAt": "2026-06-29",
+      "createdAt": "2026-06-29T08:20:00.000Z"
+    },
+    {
+      "id": "log_sample_004",
+      "plantId": "plant_sample_sansevieria_001",
+      "plantNickname": "침실 산세베리아",
+      "wateredAt": "2026-07-02",
+      "createdAt": "2026-07-02T11:10:00.000Z"
+    },
+    {
+      "id": "log_sample_005",
+      "plantId": "plant_sample_dracaena_001",
+      "plantNickname": "현관 행운목",
+      "wateredAt": "2026-06-30",
+      "createdAt": "2026-06-30T14:00:00.000Z"
+    }
+  ]
+    
